@@ -1,3 +1,52 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "portfolio-1",
+      "description": "A placeholder image for a portfolio project on web development.",
+      "imageUrl": "https://images.unsplash.com/photo-1549317336-206569e8475c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHx0ZWNoJTIwYWJzdHJhY3R8ZW58MHx8fHwxNzU4OTc0NzM5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "tech abstract"
+    },
+    {
+      "id": "portfolio-2",
+      "description": "A placeholder image for a portfolio project on cloud solutions.",
+      "imageUrl": "https://images.unsplash.com/photo-1615494937408-7f4e41bf45d9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxjb2RlJTIwc2NyZWVufGVufDB8fHx8MTc1ODkyNDk2MHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "code screen"
+    },
+    {
+      "id": "portfolio-3",
+      "description": "A placeholder image for a portfolio project on SEO optimization.",
+      "imageUrl": "https://images.unsplash.com/photo-1712904311048-dd345c13a7c2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxkYXRhJTIwZ3JhcGh8ZW58MHx8fHwxNzU4OTcwODYxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "data graph"
+    },
+    {
+      "id": "portfolio-4",
+      "description": "A placeholder image for a portfolio project on backend systems.",
+      "imageUrl": "https://images.unsplash.com/photo-1680992046626-418f7e910589?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxzZXJ2ZXIlMjByb29tfGVufDB8fHx8MTc1ODkxMjMwNnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "server room"
+    },
+    {
+      "id": "testimonial-1",
+      "description": "Avatar for a client testimonial.",
+      "imageUrl": "https://images.unsplash.com/photo-1521119989659-a83eee488004?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8cGVyc29uJTIwcG9ydHJhaXR8ZW58MHx8fHwxNzU4OTAxOTMzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "person portrait"
+    },
+    {
+      "id": "testimonial-2",
+      "description": "Avatar for a client testimonial.",
+      "imageUrl": "https://images.unsplash.com/photo-1560250097-0b93528c311a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBoZWFkc2hvdHxlbnwwfHx8fDE3NTg4OTY4ODZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "professional headshot"
+    },
+    {
+      "id": "testimonial-3",
+      "description": "Avatar for a client testimonial.",
+      "imageUrl": "https://images.unsplash.com/photo-1656338997878-279d71d48f6e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxwZXJzb24lMjBzbWlsaW5nfGVufDB8fHx8MTc1ODkwMDczMHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "person smiling"
+    },
+    {
+      "id": "about-us",
+      "description": "Image for the about us section, showing a modern office.",
+      "imageUrl": "https://images.unsplash.com/photo-1556761175-4b46a572b786?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxtb2Rlcm4lMjBvZmZpY2V8ZW58MHx8fHwxNzU4OTYxMDcwfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "modern office"
+    }
+  ]
 }
