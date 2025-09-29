@@ -12,7 +12,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const testimonials = [
   {
     quote:
-      "Vertex Digital revolutionized our online platform. Their expertise and dedication are second to none. Our user engagement has skyrocketed since the relaunch.",
+      "Net Genius revolutionized our online platform. Their expertise and dedication are second to none. Our user engagement has skyrocketed since the relaunch.",
     name: "Sarah Johnson",
     title: "CEO, Innovate Inc.",
     imageId: "testimonial-1",
@@ -30,7 +30,7 @@ const testimonials = [
   },
   {
     quote:
-      "Working with Vertex Digital felt like a true partnership. They understood our vision and translated it into a digital experience that exceeded our expectations.",
+      "Working with Net Genius felt like a true partnership. They understood our vision and translated it into a digital experience that exceeded our expectations.",
     name: "Emily Rodriguez",
     title: "Founder, Creative Co.",
     imageId: "testimonial-3",

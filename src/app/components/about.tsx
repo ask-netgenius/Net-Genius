@@ -52,10 +52,10 @@ export default function About() {
               Crafting Digital Excellence
             </p>
             <p className="mt-6 text-lg leading-8 text-muted-foreground">
-              At Vertex Digital, we're more than just developers; we're
-              architects of the digital world. Our mission is to empower
-              businesses by transforming their ideas into powerful, scalable,
-              and elegant digital solutions.
+              At Net Genius, we're more than just developers; we're architects
+              of the digital world. Our mission is to empower businesses by
+              transforming their ideas into powerful, scalable, and elegant
+              digital solutions.
             </p>
             <div className="mt-10 space-y-8">
               {values.map((value) => (

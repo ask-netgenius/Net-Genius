@@ -9,7 +9,7 @@
 
 ## 🌟 Overview
 
-Net Genius (Vertex Digital) is a premium digital services platform that showcases modern web development practices, AI-powered advisory services, and comprehensive business solutions. Built with cutting-edge technologies and designed with user experience at its core.
+Net Genius is a premium digital services platform that showcases modern web development practices, AI-powered advisory services, and comprehensive business solutions. Built with cutting-edge technologies and designed with user experience at its core.
 
 ## ✨ Features
 
@@ -269,7 +269,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 👥 Team
 
-**Vertex Digital Team**
+**Net Genius Team**
 
 - **Lead Developer**: [Your Name]
 - **UI/UX Designer**: [Designer Name]
@@ -285,7 +285,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ---
 
 <div align="center">
-  <p>Built with ❤️ by the Vertex Digital Team</p>
+  <p>Built with ❤️ by the Net Genius Team</p>
   <p>
     <a href="#top">Back to Top</a> •
     <a href="https://github.com/swaindhruti/net-genius/issues">Report Bug</a> •

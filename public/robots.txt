@@ -1,0 +1,54 @@
+# https://www.robotstxt.org/robotstxt.html
+# Net Genius - Single Page Application SEO Optimization
+
+User-agent: *
+Allow: /
+
+# Main landing page sections (single page app)
+Allow: /#home
+Allow: /#services  
+Allow: /#about
+Allow: /#portfolio
+Allow: /#testimonials
+Allow: /#pricing
+Allow: /#contact
+
+# Static assets
+Allow: /favicon.ico
+Allow: /*.css
+Allow: /*.js
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.jpeg
+Allow: /*.gif
+Allow: /*.svg
+Allow: /*.webp
+
+# Sitemap location
+Sitemap: https://netgenius.dev/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
+
+# Block common unwanted bots to preserve server resources
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+# Allow important search engine bots
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /

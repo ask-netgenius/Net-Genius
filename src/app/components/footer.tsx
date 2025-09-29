@@ -24,7 +24,7 @@ export default function Footer() {
               <div className="flex items-center gap-2">
                 <Code className="h-6 w-6 text-primary" />
                 <span className="font-bold font-headline text-xl">
-                  Vertex Digital
+                  Net Genius
                 </span>
               </div>
               <p className="text-muted-foreground text-sm leading-relaxed pr-2">
@@ -218,9 +218,7 @@ export default function Footer() {
         <div className="border-t border-border py-6">
           <div className="flex flex-col lg:flex-row justify-between items-center gap-6">
             <div className="flex flex-col sm:flex-row items-center gap-4 text-sm text-muted-foreground text-center lg:text-left">
-              <span>
-                &copy; {currentYear} Vertex Digital. All rights reserved.
-              </span>
+              <span>&copy; {currentYear} Net Genius. All rights reserved.</span>
               <span className="hidden sm:inline">|</span>
               <span>Crafted with ❤️ for digital excellence</span>
             </div>

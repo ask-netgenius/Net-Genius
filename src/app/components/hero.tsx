@@ -161,7 +161,7 @@ export default function Hero(): JSX.Element {
         >
           <span className="w-2 h-2 bg-primary rounded-full mr-2 animate-pulse" />
           <span className="text-sm text-muted-foreground">
-            Welcome to the Future
+            Expert Digital Solutions Since 2024
           </span>
         </motion.div>
 
@@ -171,7 +171,7 @@ export default function Hero(): JSX.Element {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.25 }}
         >
-          Transform Your Digital Presence
+          Premier Digital Services & Software Development Agency
         </motion.h1>
 
         <motion.p
@@ -180,9 +180,10 @@ export default function Hero(): JSX.Element {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          We are Vertex Digital, a team of innovators dedicated to building the
-          future of the web. From sleek backends to stunning frontends, we
-          deliver digital solutions that drive results.
+          Net Genius specializes in full-stack development, custom software
+          solutions, cloud infrastructure, DevOps automation, and business
+          digitalization. Transform your business with cutting-edge technology
+          and expert development services.
         </motion.p>
 
         <motion.div
