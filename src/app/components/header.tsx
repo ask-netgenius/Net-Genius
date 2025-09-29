@@ -49,7 +49,7 @@ export default function Header() {
               <Code className="h-6 w-6 text-primary-foreground" />
             </div>
             <span className="text-xl font-bold font-headline group-hover:text-primary transition-colors duration-300">
-              Vertex Digital
+              Net Genius
             </span>
           </Link>
 
