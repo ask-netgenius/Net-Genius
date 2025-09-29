@@ -4,51 +4,51 @@
 
 @layer base {
   :root {
-    --background: 216 19% 16%; /* Dark Gray #222831 */
-    --foreground: 210 20% 93%; /* Light Gray/White #EEEEEE */
-    --card: 215 12% 22%; /* Medium Gray #31363F */
-    --card-foreground: 210 20% 93%; /* Light Gray/White */
-    --popover: 216 19% 16%;
-    --popover-foreground: 210 20% 93%;
-    --primary: 184 21% 57%; /* Teal #76ABAE */
-    --primary-foreground: 216 19% 12%; /* Darker for contrast on Teal */
-    --secondary: 215 12% 30%; /* Lighter gray for secondary buttons */
-    --secondary-foreground: 210 20% 93%;
-    --muted: 215 12% 30%;
-    --muted-foreground: 210 20% 75%;
-    --accent: 215 12% 30%; /* Accent for hovers */
-    --accent-foreground: 210 20% 93%;
-    --destructive: 0 63% 31%;
-    --destructive-foreground: 210 20% 93%;
-    --border: 215 12% 30%;
-    --input: 215 12% 30%;
-    --ring: 184 21% 57%; /* Teal for focus rings */
+    --background: 240 5% 9%; /* Dark Titanium Gray */
+    --foreground: 240 5% 90%; /* Light, Clean Gray for text */
+    --card: 240 4% 14%; /* Lighter Titanium */
+    --card-foreground: 240 5% 90%;
+    --popover: 240 5% 9%;
+    --popover-foreground: 240 5% 90%;
+    --primary: 85 90% 52%; /* Acid Green / Sharp Lime */
+    --primary-foreground: 85 90% 5%; /* Very Dark Green for text on buttons */
+    --secondary: 240 3% 25%; /* Muted Cool Gray */
+    --secondary-foreground: 240 5% 90%;
+    --muted: 240 3% 25%;
+    --muted-foreground: 240 5% 65%; /* Muted Gray text */
+    --accent: 240 3% 30%; /* Lighter gray for hovers */
+    --accent-foreground: 240 5% 95%;
+    --destructive: 330 85% 60%; /* Vibrant Magenta/Hot Pink for warnings */
+    --destructive-foreground: 0 0% 100%;
+    --border: 240 3% 20%; /* Subtle cool-gray border */
+    --input: 240 3% 20%;
+    --ring: 85 90% 55%; /* Slightly brighter Acid Green for focus */
     --radius: 0.5rem;
   }
- 
+
   .dark {
-    --background: 216 19% 16%;
-    --foreground: 210 20% 93%;
-    --card: 215 12% 22%;
-    --card-foreground: 210 20% 93%;
-    --popover: 216 19% 16%;
-    --popover-foreground: 210 20% 93%;
-    --primary: 184 21% 57%;
-    --primary-foreground: 216 19% 12%;
-    --secondary: 215 12% 30%;
-    --secondary-foreground: 210 20% 93%;
-    --muted: 215 12% 30%;
-    --muted-foreground: 210 20% 75%;
-    --accent: 215 12% 30%;
-    --accent-foreground: 210 20% 93%;
-    --destructive: 0 63% 31%;
-    --destructive-foreground: 210 20% 93%;
-    --border: 215 12% 30%;
-    --input: 215 12% 30%;
-    --ring: 184 21% 57%;
+    --background: 240 5% 9%; /* Dark Titanium Gray */
+    --foreground: 240 5% 90%; /* Light, Clean Gray for text */
+    --card: 240 4% 14%; /* Lighter Titanium */
+    --card-foreground: 240 5% 90%;
+    --popover: 240 5% 9%;
+    --popover-foreground: 240 5% 90%;
+    --primary: 85 90% 52%; /* Acid Green / Sharp Lime */
+    --primary-foreground: 85 90% 5%; /* Very Dark Green for text on buttons */
+    --secondary: 240 3% 25%; /* Muted Cool Gray */
+    --secondary-foreground: 240 5% 90%;
+    --muted: 240 3% 25%;
+    --muted-foreground: 240 5% 65%; /* Muted Gray text */
+    --accent: 240 3% 30%; /* Lighter gray for hovers */
+    --accent-foreground: 240 5% 95%;
+    --destructive: 330 85% 60%; /* Vibrant Magenta/Hot Pink for warnings */
+    --destructive-foreground: 0 0% 100%;
+    --border: 240 3% 20%; /* Subtle cool-gray border */
+    --input: 240 3% 20%;
+    --ring: 85 90% 55%; /* Slightly brighter Acid Green for focus */
   }
 }
- 
+
 @layer base {
   * {
     @apply border-border;
@@ -58,5 +58,15 @@
   }
   html {
     scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  .line-clamp-4 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
   }
 }
