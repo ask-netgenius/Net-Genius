@@ -173,7 +173,7 @@ export default function Testimonials() {
                 transition={{ duration: 0.5, ease: "easeInOut" }}
                 className="w-full"
               >
-                <Card className="border-primary/10 bg-card/70 backdrop-blur-sm shadow-2xl shadow-primary/10 h-[400px]">
+                <Card className="border-primary/10 bg-card/70 backdrop-blur-sm h-[400px]">
                   <CardContent className="p-8 md:p-12 h-full flex items-center">
                     <div className="flex flex-col justify-center h-full space-y-6">
                       {/* Quote Section */}

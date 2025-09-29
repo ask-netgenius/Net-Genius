@@ -2,7 +2,14 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import { getAiSuggestion } from "@/app/actions";
 import { AIServiceAdvisorOutput } from "@/ai/flows/ai-service-advisor";
@@ -29,75 +36,140 @@ export default function AiAdvisor() {
       const suggestion = await getAiSuggestion({ businessNeeds });
       setResult(suggestion);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "An unknown error occurred.");
+      setError(
+        err instanceof Error ? err.message : "An unknown error occurred."
+      );
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <section id="ai-advisor" className="py-24 sm:py-32">
+    <section id="ai-advisor" className="py-24 sm:py-32 bg-card/50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
-          <h2 className="text-base font-semibold leading-7 text-primary flex items-center justify-center gap-2">
-            <Sparkles className="h-5 w-5" /> AI-Powered
+          <h2 className="text-base font-semibold leading-7 text-primary mb-2">
+            AI-Powered Advisor
           </h2>
-          <p className="mt-2 text-3xl font-bold tracking-tight font-headline sm:text-4xl">
+          <p className="text-3xl font-bold tracking-tight font-headline sm:text-4xl text-transparent bg-clip-text bg-gradient-to-br from-foreground to-primary/80 mb-6">
             Unsure Where to Start?
           </p>
-          <p className="mt-6 text-lg leading-8 text-muted-foreground max-w-2xl mx-auto">
-            Describe your project or business goals, and our AI advisor will suggest the best services to help you succeed.
+          <p className="text-lg leading-8 text-muted-foreground max-w-2xl mx-auto">
+            Describe your project or business goals, and our AI advisor will
+            suggest the best services to help you succeed.
           </p>
         </div>
 
-        <Card className="max-w-3xl mx-auto mt-16 shadow-lg">
-          <form onSubmit={handleSubmit}>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Wand2 className="h-6 w-6" />
-                Service Advisor
-              </CardTitle>
-              <CardDescription>
-                Let us know what you're looking to achieve.
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Textarea
-                placeholder="e.g., 'I want to build an online store for my clothing brand with a modern design and fast checkout process.'"
-                value={businessNeeds}
-                onChange={(e) => setBusinessNeeds(e.target.value)}
-                rows={5}
-                disabled={loading}
-              />
-              {error && <p className="mt-2 text-sm text-destructive">{error}</p>}
-            </CardContent>
-            <CardFooter>
-              <Button type="submit" disabled={loading} className="w-full sm:w-auto">
-                {loading ? (
-                  <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Analyzing...
-                  </>
-                ) : (
-                  "Get Suggestion"
-                )}
-              </Button>
-            </CardFooter>
-          </form>
+        <div className="max-w-4xl mx-auto mt-16">
+          <Card className="shadow-xl border-0 bg-background/60 backdrop-blur-sm hover:shadow-2xl transition-all duration-300">
+            <form onSubmit={handleSubmit}>
+              <CardHeader className="text-center pb-8">
+                <CardTitle className="text-2xl font-headline">
+                  Service Advisor
+                </CardTitle>
+                <CardDescription className="text-base mt-2">
+                  Let us know what you're looking to achieve and we'll recommend
+                  the perfect solution.
+                </CardDescription>
+              </CardHeader>
 
-          {result && (
-            <div className="border-t p-6">
-                <h3 className="font-semibold text-lg mb-2">Our Recommendation:</h3>
-                <div className="flex flex-wrap gap-2 mb-4">
-                    {result.suggestedServices.map(service => (
-                        <Badge key={service} variant="default">{service}</Badge>
-                    ))}
+              <CardContent className="space-y-6">
+                <div className="space-y-3">
+                  <label className="text-sm font-medium text-foreground">
+                    Describe your business needs or project goals
+                  </label>
+                  <Textarea
+                    placeholder="e.g., 'I want to build an online store for my clothing brand with a modern design and fast checkout process.'"
+                    value={businessNeeds}
+                    onChange={(e) => setBusinessNeeds(e.target.value)}
+                    rows={5}
+                    disabled={loading}
+                    className="min-h-[120px] resize-none focus:ring-2 focus:ring-primary/20"
+                  />
+                  {error && (
+                    <p className="text-sm text-destructive bg-destructive/10 p-2 rounded-md">
+                      {error}
+                    </p>
+                  )}
                 </div>
-                <h4 className="font-semibold mt-4 mb-2">Reasoning:</h4>
-                <p className="text-muted-foreground text-sm">{result.reasoning}</p>
-            </div>
-          )}
-        </Card>
+              </CardContent>
+
+              <CardFooter className="pt-6">
+                <Button
+                  type="submit"
+                  disabled={loading || !businessNeeds.trim()}
+                  className="w-full h-12 text-base font-medium"
+                  size="lg"
+                >
+                  {loading ? (
+                    <>
+                      <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                      Analyzing your needs...
+                    </>
+                  ) : (
+                    <>
+                      <Sparkles className="mr-2 h-5 w-5" />
+                      Get AI Recommendation
+                    </>
+                  )}
+                </Button>
+              </CardFooter>
+            </form>
+
+            {result && (
+              <div className="border-t bg-muted/30 p-8 rounded-b-lg">
+                <div className="space-y-6">
+                  <div className="text-center">
+                    <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium mb-4">
+                      <Sparkles className="h-4 w-4" />
+                      AI Recommendation
+                    </div>
+                    <h3 className="font-headline text-xl font-semibold">
+                      Perfect Services for Your Project
+                    </h3>
+                  </div>
+
+                  <div className="space-y-4">
+                    <div>
+                      <h4 className="font-semibold text-sm text-muted-foreground uppercase tracking-wider mb-3">
+                        Recommended Services
+                      </h4>
+                      <div className="flex flex-wrap gap-2">
+                        {result.suggestedServices.map((service, index) => (
+                          <Badge
+                            key={service}
+                            variant="default"
+                            className="px-3 py-1 text-sm font-medium"
+                            style={{ animationDelay: `${index * 0.1}s` }}
+                          >
+                            {service}
+                          </Badge>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div>
+                      <h4 className="font-semibold text-sm text-muted-foreground uppercase tracking-wider mb-3">
+                        Why This Recommendation?
+                      </h4>
+                      <div className="bg-background/60 rounded-lg p-4 border">
+                        <p className="text-muted-foreground leading-relaxed">
+                          {result.reasoning}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="pt-4 text-center">
+                      <Button asChild variant="outline" className="px-6">
+                        <a href="#contact">Get Started with These Services</a>
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+          </Card>
+        </div>
       </div>
     </section>
   );
