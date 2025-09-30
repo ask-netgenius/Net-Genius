@@ -43,7 +43,7 @@ export default function Hero(): JSX.Element {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background"
+      className="relative min-h-screen flex items-start sm:items-center justify-center overflow-hidden bg-background pt-32 sm:pt-0"
     >
       {/* --- Enhanced Background Elements --- */}
       <motion.div className="absolute inset-0 -z-10">
@@ -147,17 +147,17 @@ export default function Hero(): JSX.Element {
 
       {/* --- Enhanced Content --- */}
       <motion.div
-        className="container mx-auto px-3 sm:px-6 lg:px-8 text-center z-10"
+        className="container mx-auto px-4 sm:px-6 lg:px-8 text-center z-10 mt-16 sm:mt-0"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ staggerChildren: 0.15, delayChildren: 0.1 }}
       >
-        {/* Floating Badge */}
+        {/* Floating Badge - Hidden on mobile */}
         <motion.div
           initial={{ opacity: 0, y: 30, scale: 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.1 }}
-          className="inline-flex items-center px-4 py-2 rounded-full border border-primary/20 bg-card/50 backdrop-blur-sm mb-8"
+          className="hidden sm:inline-flex items-center px-4 py-2 rounded-full border border-primary/20 bg-card/50 backdrop-blur-sm mb-8"
         >
           <span className="w-2 h-2 bg-primary rounded-full mr-2 animate-pulse" />
           <span className="text-sm text-muted-foreground">
@@ -166,7 +166,7 @@ export default function Hero(): JSX.Element {
         </motion.div>
 
         <motion.h1
-          className="text-5xl font-bold tracking-tight font-headline sm:text-7xl lg:text-8xl text-transparent bg-clip-text bg-gradient-to-br from-foreground via-foreground to-primary/80 leading-tight"
+          className="text-4xl font-bold tracking-tight font-headline sm:text-7xl lg:text-8xl text-transparent bg-clip-text bg-gradient-to-br from-foreground via-foreground to-primary/80 leading-tight"
           initial={{ opacity: 0, y: 30, scale: 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.25 }}
@@ -175,7 +175,7 @@ export default function Hero(): JSX.Element {
         </motion.h1>
 
         <motion.p
-          className="mt-8 text-lg leading-7 text-muted-foreground max-w-2xl mx-auto"
+          className="mt-6 sm:mt-8 text-base sm:text-lg leading-6 sm:leading-7 text-muted-foreground max-w-xl sm:max-w-2xl mx-auto px-4 sm:px-0"
           initial={{ opacity: 0, y: 30, scale: 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.4 }}
@@ -186,7 +186,7 @@ export default function Hero(): JSX.Element {
         </motion.p>
 
         <motion.div
-          className="mt-12 flex items-center justify-center gap-x-6 flex-wrap gap-y-4"
+          className="mt-8 sm:mt-12 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-x-6 px-4 sm:px-0"
           initial={{ opacity: 0, y: 30, scale: 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.55 }}
@@ -194,12 +194,12 @@ export default function Hero(): JSX.Element {
           <motion.div
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.95 }}
-            className="group"
+            className="group w-full sm:w-auto"
           >
             <Button
               asChild
               size="lg"
-              className="shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-all duration-300"
+              className="w-full sm:w-auto shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-all duration-300"
             >
               <Link href="#contact" className="relative overflow-hidden">
                 <motion.span
@@ -215,12 +215,13 @@ export default function Hero(): JSX.Element {
           <motion.div
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.95 }}
+            className="w-full sm:w-auto"
           >
             <Button
               asChild
               variant="ghost"
               size="lg"
-              className="group border border-primary/20 hover:border-primary/40 backdrop-blur-sm"
+              className="w-full sm:w-auto group border border-primary/20 hover:border-primary/40 backdrop-blur-sm"
             >
               <Link href="#services" className="flex items-center">
                 Our Services
@@ -239,7 +240,7 @@ export default function Hero(): JSX.Element {
 
         {/* Stats or Features */}
         <motion.div
-          className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-2xl mx-auto"
+          className="mt-12 sm:mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 max-w-2xl mx-auto px-4 sm:px-0"
           initial={{ opacity: 0, y: 30, scale: 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.7 }}
@@ -271,7 +272,7 @@ export default function Hero(): JSX.Element {
 
       {/* Scroll Indicator */}
       <motion.div
-        className="absolute bottom-8 left-0 right-0 flex justify-center"
+        className="absolute bottom-4 sm:bottom-8 left-0 right-0 flex justify-center"
         animate={{ y: [0, -10, 0] }}
         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
       >
