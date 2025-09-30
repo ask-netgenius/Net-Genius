@@ -30,11 +30,11 @@ export default function About() {
   return (
     <section
       id="about"
-      className="relative py-24 sm:py-32 overflow-hidden bg-card/50"
+      className="relative py-24 sm:py-32 overflow-hidden bg-background"
     >
       {/* Simple background - minimal like hero */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-gradient-to-br from-background via-card/30 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-br from-background via-background/50 to-background" />
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">

@@ -45,7 +45,7 @@ export default function AiAdvisor() {
   };
 
   return (
-    <section id="ai-advisor" className="py-24 sm:py-32 bg-card/50">
+    <section id="ai-advisor" className="py-24 sm:py-32 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <h2 className="text-base font-semibold leading-7 text-primary mb-2">

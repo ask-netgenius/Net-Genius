@@ -2,12 +2,17 @@
 
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { ChevronLeft, ChevronRight, Quote, Star } from "lucide-react";
+import { Quote, Star } from "lucide-react";
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, EffectCoverflow } from "swiper/modules";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/effect-coverflow";
 
 const testimonials = [
   {
@@ -46,48 +51,49 @@ const testimonials = [
     rating: 5,
     company: "TechFlow",
   },
+  {
+    quote:
+      "Outstanding service and delivery. They not only met our requirements but exceeded them. Our application performs better than we ever imagined.",
+    name: "Lisa Thompson",
+    title: "Product Manager, CloudTech",
+    imageId: "testimonial-2",
+    rating: 5,
+    company: "CloudTech",
+  },
 ];
 
 export default function Testimonials() {
-  const [currentIndex, setCurrentIndex] = useState(0);
   const [mounted, setMounted] = useState(false);
+
+  // Triple testimonials for seamless infinite scrolling
+  const duplicatedTestimonials = [
+    ...testimonials,
+    ...testimonials,
+    ...testimonials,
+  ];
 
   useEffect(() => {
     setMounted(true);
-    const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-    }, 5000);
-    return () => clearInterval(timer);
   }, []);
-
-  const nextTestimonial = () => {
-    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-  };
-
-  const prevTestimonial = () => {
-    setCurrentIndex(
-      (prev) => (prev - 1 + testimonials.length) % testimonials.length
-    );
-  };
 
   return (
     <section
       id="testimonials"
-      className="relative py-24 sm:py-32 overflow-hidden bg-card/50"
+      className="relative py-24 sm:py-32 overflow-hidden bg-background"
     >
       {/* Background Elements - matching other sections */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-gradient-to-bl from-background via-card/30 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-bl from-background via-background/50 to-background" />
 
-        {/* Floating orb */}
+        {/* Subtle floating orb */}
         <motion.div
-          className="absolute w-80 h-80 rounded-full bg-primary/5 blur-3xl bottom-1/4 right-1/4"
+          className="absolute w-96 h-96 rounded-full bg-primary/4 blur-3xl bottom-1/4 right-1/4"
           animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.4, 0.6, 0.4],
+            scale: [1, 1.3, 1],
+            opacity: [0.3, 0.6, 0.3],
           }}
           transition={{
-            duration: 12,
+            duration: 20,
             repeat: Infinity,
             ease: "easeInOut",
           }}
@@ -95,22 +101,22 @@ export default function Testimonials() {
 
         {/* Subtle particles */}
         {mounted &&
-          [...Array(6)].map((_, i) => (
+          [...Array(10)].map((_, i) => (
             <motion.div
               key={i}
-              className="absolute w-1 h-1 bg-primary/25 rounded-full"
+              className="absolute w-1 h-1 bg-primary/20 rounded-full"
               style={{
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
               }}
               animate={{
                 y: [0, -25, 0],
-                opacity: [0.3, 0.7, 0.3],
+                opacity: [0.2, 0.6, 0.2],
               }}
               transition={{
-                duration: 8 + Math.random() * 2,
+                duration: 4 + Math.random() * 3,
                 repeat: Infinity,
-                delay: Math.random() * 2,
+                delay: Math.random() * 3,
                 ease: "easeInOut",
               }}
             />
@@ -127,146 +133,155 @@ export default function Testimonials() {
           viewport={{ once: true }}
         >
           <h2 className="text-base font-semibold leading-7 text-primary mb-2">
-            What Our Clients Say
+            Client Testimonials
           </h2>
           <p className="text-3xl font-bold tracking-tight font-headline sm:text-4xl text-transparent bg-clip-text bg-gradient-to-br from-foreground to-primary/80 mb-6">
             Trusted by Industry Leaders
           </p>
           <p className="text-lg leading-8 text-muted-foreground max-w-2xl mx-auto">
-            Don't just take our word for it. See what our clients have to say
-            about their transformative experiences.
+            Don't just take our word for it. Here's what our clients have to say
+            about their experience working with Net Genius.
           </p>
         </motion.div>
 
-        {/* Main Testimonial Carousel */}
-        <div className="relative max-w-5xl mx-auto">
-          {/* Navigation Buttons */}
-          <div className="absolute top-1/2 -translate-y-1/2 -left-4 z-20">
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={prevTestimonial}
-              className="rounded-full bg-background/80 backdrop-blur-sm border-primary/20 hover:border-primary/40"
-            >
-              <ChevronLeft className="h-4 w-4" />
-            </Button>
-          </div>
-          <div className="absolute top-1/2 -translate-y-1/2 -right-4 z-20">
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={nextTestimonial}
-              className="rounded-full bg-background/80 backdrop-blur-sm border-primary/20 hover:border-primary/40"
-            >
-              <ChevronRight className="h-4 w-4" />
-            </Button>
-          </div>
+        {/* Testimonials Swiper */}
+        <div className="relative">
+          <Swiper
+            effect={"coverflow"}
+            grabCursor={true}
+            centeredSlides={true}
+            slidesPerView={"auto"}
+            loop={true}
+            loopAdditionalSlides={2}
+            watchSlidesProgress={true}
+            coverflowEffect={{
+              rotate: 50,
+              stretch: 0,
+              depth: 100,
+              modifier: 1,
+              slideShadows: true,
+            }}
+            autoplay={{
+              delay: 4000,
+              disableOnInteraction: false,
+              pauseOnMouseEnter: true,
+            }}
+            modules={[Autoplay, EffectCoverflow]}
+            breakpoints={{
+              640: {
+                slidesPerView: 1,
+                effect: "slide",
+              },
+              768: {
+                slidesPerView: 1,
+                effect: "slide",
+              },
+              1024: {
+                slidesPerView: "auto",
+                effect: "coverflow",
+              },
+            }}
+            className="testimonials-swiper"
+          >
+            {duplicatedTestimonials.map((testimonial, index) => {
+              const testimonialImage = PlaceHolderImages.find(
+                (p) => p.id === testimonial.imageId
+              );
+              return (
+                <SwiperSlide
+                  key={`testimonial-${index}-${testimonial.name}`}
+                  className="max-w-2xl"
+                >
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.1 }}
+                    viewport={{ once: true }}
+                  >
+                    <Card className="border-primary/10 bg-background/70 backdrop-blur-sm h-[400px] p-8 flex flex-col justify-between">
+                      <CardContent className="p-0 flex-1 flex flex-col justify-between">
+                        {/* Quote Icon */}
+                        <div className="flex justify-center mb-6">
+                          {/* <div className="p-3 bg-primary/10 rounded-full"> */}
+                          <Quote className="h-8 w-8 text-primary" />
+                          {/* </div> */}
+                        </div>
 
-          {/* Testimonial Cards */}
-          <div className="overflow-hidden h-[500px] flex items-center">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentIndex}
-                initial={{ opacity: 0, x: 100 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -100 }}
-                transition={{ duration: 0.5, ease: "easeInOut" }}
-                className="w-full"
-              >
-                <Card className="border-primary/10 bg-card/70 backdrop-blur-sm h-[400px]">
-                  <CardContent className="p-8 md:p-12 h-full flex items-center">
-                    <div className="flex flex-col justify-center h-full space-y-6">
-                      {/* Quote Section */}
-                      <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.2 }}
-                      >
-                        <Quote className="h-8 w-8 text-primary/60 mb-4" />
-                        <blockquote className="text-xl md:text-2xl font-medium leading-relaxed text-foreground line-clamp-4">
-                          "{testimonials[currentIndex].quote}"
+                        {/* Quote Text */}
+                        <blockquote className="text-lg leading-relaxed text-center text-foreground mb-6 flex-1 flex items-center">
+                          <p>"{testimonial.quote}"</p>
                         </blockquote>
-                      </motion.div>
 
-                      {/* Rating */}
-                      <motion.div
-                        className="flex items-center gap-2"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.3 }}
-                      >
-                        {[...Array(testimonials[currentIndex].rating)].map(
-                          (_, i) => (
-                            <Star
-                              key={i}
-                              className="h-5 w-5 fill-yellow-400 text-yellow-400"
-                            />
-                          )
-                        )}
-                        <span className="text-sm text-muted-foreground ml-2">
-                          {testimonials[currentIndex].rating}.0 out of 5
-                        </span>
-                      </motion.div>
+                        {/* Rating Stars */}
+                        <div className="flex justify-center items-center mb-6">
+                          <div className="flex space-x-1 mr-2">
+                            {[...Array(testimonial.rating)].map((_, i) => (
+                              <Star
+                                key={i}
+                                className="h-4 w-4 fill-yellow-400 text-yellow-400"
+                              />
+                            ))}
+                          </div>
+                          <span className="text-sm text-muted-foreground">
+                            {testimonial.rating}.0 out of 5
+                          </span>
+                        </div>
 
-                      {/* Author Info */}
-                      <motion.div
-                        className="flex items-center gap-4 pt-4 border-t border-primary/10"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.4 }}
-                      >
-                        <Avatar className="h-12 w-12 border-2 border-primary/20">
-                          {PlaceHolderImages.find(
-                            (p) => p.id === testimonials[currentIndex].imageId
-                          ) && (
+                        {/* Author Info */}
+                        <div className="flex items-center justify-center">
+                          <Avatar className="h-12 w-12 mr-4">
                             <AvatarImage
                               src={
-                                PlaceHolderImages.find(
-                                  (p) =>
-                                    p.id === testimonials[currentIndex].imageId
-                                )?.imageUrl
+                                testimonialImage
+                                  ? PlaceHolderImages.find(
+                                      (p) => p.id === testimonial.imageId
+                                    )?.imageUrl
+                                  : undefined
                               }
-                              alt={testimonials[currentIndex].name}
+                              alt={testimonial.name}
                             />
-                          )}
-                          <AvatarFallback>
-                            {testimonials[currentIndex].name.charAt(0)}
-                          </AvatarFallback>
-                        </Avatar>
-                        <div>
-                          <p className="font-semibold text-foreground text-lg">
-                            {testimonials[currentIndex].name}
-                          </p>
-                          <p className="text-muted-foreground">
-                            {testimonials[currentIndex].title}
-                          </p>
-                          <p className="text-sm text-primary">
-                            {testimonials[currentIndex].company}
-                          </p>
+                            <AvatarFallback className="bg-primary/10 text-primary">
+                              {testimonial.name.charAt(0)}
+                            </AvatarFallback>
+                          </Avatar>
+                          <div className="text-center">
+                            <p className="font-semibold text-foreground">
+                              {testimonial.name}
+                            </p>
+                            <p className="text-sm text-muted-foreground">
+                              {testimonial.title}
+                            </p>
+                          </div>
                         </div>
-                      </motion.div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            </AnimatePresence>
-          </div>
-
-          {/* Pagination Dots */}
-          <div className="flex justify-center mt-8 space-x-2">
-            {testimonials.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentIndex(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  index === currentIndex
-                    ? "bg-primary scale-125"
-                    : "bg-primary/30 hover:bg-primary/50"
-                }`}
-              />
-            ))}
-          </div>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
         </div>
+
+        {/* CTA Section */}
+        <motion.div
+          className="text-center mt-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          viewport={{ once: true }}
+        >
+          <p className="text-muted-foreground mb-6">
+            Ready to join our list of satisfied clients?
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <button className="bg-primary text-primary-foreground hover:bg-primary/90 px-6 py-3 rounded-lg font-semibold transition-colors">
+              Start Your Project
+            </button>
+            <button className="border border-primary/20 hover:border-primary/40 px-6 py-3 rounded-lg font-semibold transition-colors">
+              View Case Studies
+            </button>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

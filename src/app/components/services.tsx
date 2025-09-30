@@ -58,7 +58,7 @@ export default function Services() {
   return (
     <section
       id="services"
-      className="py-24 sm:py-32 bg-gradient-to-br from-background via-card/30 to-background relative overflow-hidden"
+      className="py-24 sm:py-32 bg-background relative overflow-hidden"
       itemScope
       itemType="https://schema.org/Service"
     >

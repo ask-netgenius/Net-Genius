@@ -11,9 +11,15 @@ import {
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, EffectCoverflow } from "swiper/modules";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/effect-coverflow";
 
 const projects = [
   {
@@ -22,7 +28,6 @@ const projects = [
       "A complete redesign and backend migration for a leading online retailer, resulting in a 40% performance boost and enhanced user experience.",
     imageId: "portfolio-1",
     tags: ["Full-Stack", "Cloud Solutions", "React", "Node.js"],
-    metrics: { performance: "+40%", conversion: "+25%", users: "10K+" },
   },
   {
     title: "SaaS Analytics Dashboard",
@@ -30,7 +35,6 @@ const projects = [
       "Developed a real-time data analytics dashboard for a B2B SaaS company, enabling data-driven decisions with interactive visualizations.",
     imageId: "portfolio-2",
     tags: ["Backend", "DevOps", "Analytics", "AWS"],
-    metrics: { dataPoints: "1M+", response: "< 200ms", uptime: "99.9%" },
   },
   {
     title: "Healthcare Digitalization",
@@ -38,7 +42,6 @@ const projects = [
       "Created a HIPAA-compliant patient management system, streamlining operations for a major hospital network with secure data handling.",
     imageId: "portfolio-3",
     tags: ["Business Digitalization", "Security", "Healthcare", "Compliance"],
-    metrics: { patients: "50K+", efficiency: "+60%", security: "100%" },
   },
   {
     title: "Startup SEO Strategy",
@@ -46,53 +49,32 @@ const projects = [
       "Executed a comprehensive SEO strategy for a fintech startup, achieving exceptional organic growth and market visibility.",
     imageId: "portfolio-4",
     tags: ["SEO", "Marketing", "Analytics", "Growth"],
-    metrics: { traffic: "+300%", keywords: "500+", ranking: "Top 3" },
-  },
-  {
-    title: "Mobile Banking App",
-    description:
-      "Built a secure, user-friendly mobile banking application with biometric authentication and real-time transaction processing.",
-    imageId: "portfolio-1",
-    tags: ["Mobile", "Fintech", "Security", "React Native"],
-    metrics: { users: "25K+", transactions: "1M+", rating: "4.8★" },
   },
   {
     title: "AI-Powered Chatbot",
     description:
-      "Developed an intelligent customer service chatbot using natural language processing, reducing support tickets by 70%.",
+      "Built an intelligent customer service chatbot using machine learning, reducing response time by 80% and improving satisfaction.",
+    imageId: "portfolio-1",
+    tags: ["AI/ML", "Customer Service", "Automation", "NLP"],
+  },
+  {
+    title: "Cloud Migration Project",
+    description:
+      "Migrated legacy infrastructure to AWS cloud, resulting in 50% cost reduction and 99.9% uptime for a financial services company.",
     imageId: "portfolio-2",
-    tags: ["AI/ML", "NLP", "Python", "Integration"],
-    metrics: { accuracy: "95%", response: "< 2s", reduction: "70%" },
+    tags: ["Cloud Migration", "AWS", "DevOps", "Infrastructure"],
   },
 ];
 
 export default function Portfolio() {
-  const [currentIndex, setCurrentIndex] = useState(0);
   const [mounted, setMounted] = useState(false);
 
-  const projectsPerView = 3;
-  const totalSlides = Math.ceil(projects.length / projectsPerView);
+  // Triple projects for seamless infinite scrolling
+  const duplicatedProjects = [...projects, ...projects, ...projects];
 
   useEffect(() => {
     setMounted(true);
-    const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % totalSlides);
-    }, 6000);
-    return () => clearInterval(timer);
-  }, [totalSlides]);
-
-  const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % totalSlides);
-  };
-
-  const prevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + totalSlides) % totalSlides);
-  };
-
-  const getCurrentProjects = () => {
-    const start = currentIndex * projectsPerView;
-    return projects.slice(start, start + projectsPerView);
-  };
+  }, []);
 
   return (
     <section
@@ -101,7 +83,7 @@ export default function Portfolio() {
     >
       {/* Background Elements - matching hero/about style */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-gradient-to-tr from-background via-card/20 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-tr from-background via-background/50 to-background" />
 
         {/* Subtle floating orb */}
         <motion.div
@@ -119,7 +101,7 @@ export default function Portfolio() {
 
         {/* Subtle particles */}
         {mounted &&
-          [...Array(8)].map((_, i) => (
+          [...Array(12)].map((_, i) => (
             <motion.div
               key={i}
               className="absolute w-1 h-1 bg-primary/20 rounded-full"
@@ -128,13 +110,13 @@ export default function Portfolio() {
                 top: `${Math.random() * 100}%`,
               }}
               animate={{
-                y: [0, -30, 0],
-                opacity: [0.2, 0.6, 0.2],
+                y: [0, -20, 0],
+                opacity: [0.2, 0.5, 0.2],
               }}
               transition={{
-                duration: 8 + Math.random() * 4,
+                duration: 3 + Math.random() * 2,
                 repeat: Infinity,
-                delay: Math.random() * 3,
+                delay: Math.random() * 2,
                 ease: "easeInOut",
               }}
             />
@@ -151,10 +133,10 @@ export default function Portfolio() {
           viewport={{ once: true }}
         >
           <h2 className="text-base font-semibold leading-7 text-primary mb-2">
-            Our Work
+            Our Portfolio
           </h2>
           <p className="text-3xl font-bold tracking-tight font-headline sm:text-4xl text-transparent bg-clip-text bg-gradient-to-br from-foreground to-primary/80 mb-6">
-            Success Stories We've Written
+            Success Stories That Inspire
           </p>
           <p className="text-lg leading-8 text-muted-foreground max-w-2xl mx-auto">
             Explore our portfolio of innovative projects that showcase our
@@ -162,149 +144,109 @@ export default function Portfolio() {
           </p>
         </motion.div>
 
-        {/* Carousel Container */}
+        {/* Swiper Carousel */}
         <div className="relative">
-          {/* Navigation Buttons */}
-          <div className="absolute top-1/2 -translate-y-1/2 -left-4 z-20">
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={prevSlide}
-              className="rounded-full bg-background/80 backdrop-blur-sm border-primary/20 hover:border-primary/40"
-            >
-              <ChevronLeft className="h-4 w-4" />
-            </Button>
-          </div>
-          <div className="absolute top-1/2 -translate-y-1/2 -right-4 z-20">
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={nextSlide}
-              className="rounded-full bg-background/80 backdrop-blur-sm border-primary/20 hover:border-primary/40"
-            >
-              <ChevronRight className="h-4 w-4" />
-            </Button>
-          </div>
-
-          {/* Projects Carousel */}
-          <div className="overflow-hidden rounded-2xl">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentIndex}
-                initial={{ opacity: 0, x: 100 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -100 }}
-                transition={{ duration: 0.5, ease: "easeInOut" }}
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-              >
-                {getCurrentProjects().map((project, index) => {
-                  const projectImage = PlaceHolderImages.find(
-                    (p) => p.id === project.imageId
-                  );
-                  return (
-                    <motion.div
-                      key={`${currentIndex}-${index}`}
-                      initial={{ opacity: 0, y: 30 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.6, delay: index * 0.1 }}
-                    >
-                      <Card className="group h-full overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-primary/20 border-primary/10 hover:border-primary/30 bg-card/50 backdrop-blur-sm flex flex-col">
-                        <CardContent className="p-0 relative flex-shrink-0">
-                          {projectImage && (
-                            <div className="relative overflow-hidden">
-                              <Image
-                                src={projectImage.imageUrl}
-                                alt={projectImage.description}
-                                width={600}
-                                height={300}
-                                data-ai-hint={projectImage.imageHint}
-                                className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
-                              />
-                              <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                              <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
-                                <Button
-                                  size="sm"
-                                  variant="secondary"
-                                  className="rounded-full"
-                                >
-                                  <ExternalLink className="h-3 w-3" />
-                                </Button>
-                              </div>
-                            </div>
-                          )}
-                        </CardContent>
-
-                        <CardHeader className="pb-3 flex-grow">
-                          <CardTitle className="font-headline text-lg group-hover:text-primary transition-colors line-clamp-2">
-                            {project.title}
-                          </CardTitle>
-                          <CardDescription className="text-sm leading-relaxed">
-                            {project.description.length > 100
-                              ? `${project.description.substring(0, 80)}...`
-                              : project.description}
-                          </CardDescription>
-                        </CardHeader>
-
-                        <CardContent className="pt-0 space-y-4 flex-shrink-0">
-                          {/* Tags */}
-                          <div className="flex flex-wrap gap-1.5 min-h-[28px]">
-                            {project.tags.slice(0, 3).map((tag) => (
-                              <Badge
-                                key={tag}
+          <Swiper
+            effect={"coverflow"}
+            grabCursor={true}
+            centeredSlides={true}
+            slidesPerView={"auto"}
+            loop={true}
+            loopAdditionalSlides={2}
+            watchSlidesProgress={true}
+            coverflowEffect={{
+              rotate: 50,
+              stretch: 0,
+              depth: 100,
+              modifier: 1,
+              slideShadows: true,
+            }}
+            autoplay={{
+              delay: 3000,
+              disableOnInteraction: false,
+              pauseOnMouseEnter: true,
+            }}
+            modules={[Autoplay, EffectCoverflow]}
+            breakpoints={{
+              640: {
+                slidesPerView: 1,
+                effect: "slide",
+              },
+              768: {
+                slidesPerView: 1,
+                effect: "slide",
+              },
+              1024: {
+                slidesPerView: "auto",
+                effect: "coverflow",
+              },
+            }}
+            className="portfolio-swiper"
+          >
+            {duplicatedProjects.map((project, index) => {
+              const projectImage = PlaceHolderImages.find(
+                (p) => p.id === project.imageId
+              );
+              return (
+                <SwiperSlide
+                  key={`portfolio-${index}-${project.title}`}
+                  className="max-w-md"
+                >
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.1 }}
+                    viewport={{ once: true }}
+                  >
+                    <Card className="group h-[400px] overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-primary/20 border-primary/10 hover:border-primary/30 bg-background/70 backdrop-blur-sm flex flex-col">
+                      <CardContent className="p-0 relative flex-shrink-0">
+                        {projectImage && (
+                          <div className="relative overflow-hidden">
+                            <Image
+                              src={projectImage.imageUrl}
+                              alt={project.title}
+                              width={400}
+                              height={250}
+                              className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                            <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                              <Button
+                                size="sm"
                                 variant="secondary"
-                                className="text-xs px-2 py-1 bg-primary/10 text-primary border-primary/20"
+                                className="bg-background/80 backdrop-blur-sm hover:bg-background"
                               >
-                                {tag}
-                              </Badge>
-                            ))}
-                            {project.tags.length > 3 && (
-                              <Badge
-                                variant="outline"
-                                className="text-xs px-2 py-1"
-                              >
-                                +{project.tags.length - 3}
-                              </Badge>
-                            )}
+                                <ExternalLink className="h-4 w-4" />
+                              </Button>
+                            </div>
                           </div>
-
-                          {/* Metrics */}
-                          <div className="grid grid-cols-3 gap-2 pt-2 border-t border-primary/10">
-                            {Object.entries(project.metrics).map(
-                              ([key, value]) => (
-                                <div key={key} className="text-center">
-                                  <div className="text-sm font-semibold text-primary truncate">
-                                    {value}
-                                  </div>
-                                  <div className="text-xs text-muted-foreground capitalize truncate">
-                                    {key}
-                                  </div>
-                                </div>
-                              )
-                            )}
-                          </div>
-                        </CardContent>
-                      </Card>
-                    </motion.div>
-                  );
-                })}
-              </motion.div>
-            </AnimatePresence>
-          </div>
-
-          {/* Pagination Dots */}
-          <div className="flex justify-center mt-8 space-x-2">
-            {Array.from({ length: totalSlides }).map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentIndex(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  index === currentIndex
-                    ? "bg-primary scale-125"
-                    : "bg-primary/30 hover:bg-primary/50"
-                }`}
-              />
-            ))}
-          </div>
+                        )}
+                      </CardContent>
+                      <CardHeader className="flex-1 flex flex-col">
+                        <CardTitle className="text-lg font-semibold group-hover:text-primary transition-colors duration-300">
+                          {project.title}
+                        </CardTitle>
+                        <CardDescription className="text-sm text-muted-foreground line-clamp-3 flex-1">
+                          {project.description}
+                        </CardDescription>
+                        <div className="flex flex-wrap gap-2 mt-4">
+                          {project.tags.slice(0, 3).map((tag) => (
+                            <Badge
+                              key={tag}
+                              variant="secondary"
+                              className="text-xs px-2 py-1 bg-primary/10 text-primary border-primary/20"
+                            >
+                              {tag}
+                            </Badge>
+                          ))}
+                        </div>
+                      </CardHeader>
+                    </Card>
+                  </motion.div>
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
         </div>
 
         {/* CTA Section */}
