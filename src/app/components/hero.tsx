@@ -147,7 +147,7 @@ export default function Hero(): JSX.Element {
 
       {/* --- Enhanced Content --- */}
       <motion.div
-        className="container mx-auto px-4 sm:px-6 lg:px-8 text-center z-10"
+        className="container mx-auto px-3 sm:px-6 lg:px-8 text-center z-10"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ staggerChildren: 0.15, delayChildren: 0.1 }}
@@ -161,7 +161,7 @@ export default function Hero(): JSX.Element {
         >
           <span className="w-2 h-2 bg-primary rounded-full mr-2 animate-pulse" />
           <span className="text-sm text-muted-foreground">
-            Expert Digital Solutions Since 2024
+            Welcome to the Future
           </span>
         </motion.div>
 
@@ -171,19 +171,18 @@ export default function Hero(): JSX.Element {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.25 }}
         >
-          Premier Digital Services & Software Development Agency
+          Transform Your Digital Presence
         </motion.h1>
 
         <motion.p
-          className="mt-8 text-xl leading-8 text-muted-foreground max-w-3xl mx-auto"
+          className="mt-8 text-lg leading-7 text-muted-foreground max-w-2xl mx-auto"
           initial={{ opacity: 0, y: 30, scale: 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          Net Genius specializes in full-stack development, custom software
-          solutions, cloud infrastructure, DevOps automation, and business
-          digitalization. Transform your business with cutting-edge technology
-          and expert development services.
+          Net Genius delivers cutting-edge software solutions, cloud
+          infrastructure, and digital innovation. Elevate your business with
+          expert development services.
         </motion.p>
 
         <motion.div
@@ -273,8 +272,8 @@ export default function Hero(): JSX.Element {
       {/* Scroll Indicator */}
       <motion.div
         className="absolute bottom-8 left-0 right-0 flex justify-center"
-        animate={{ y: [0, -20, 0] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        animate={{ y: [0, -10, 0] }}
+        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
       >
         <motion.div
           className="flex flex-col items-center cursor-pointer group"
@@ -285,16 +284,16 @@ export default function Hero(): JSX.Element {
               ?.scrollIntoView({ behavior: "smooth" })
           }
         >
-          <span className="text-xs text-muted-foreground mb-2 group-hover:text-primary transition-colors">
+          <span className="text-xs text-muted-foreground mb-1 group-hover:text-primary transition-colors">
             Scroll to explore
           </span>
           <motion.div
-            className="w-6 h-10 border-2 border-primary/40 rounded-full flex justify-center group-hover:border-primary/60 transition-colors"
+            className="w-4 h-7 border-2 border-primary/40 rounded-full flex justify-center group-hover:border-primary/60 transition-colors"
             whileHover={{ borderColor: "hsl(var(--primary))" }}
           >
             <motion.div
-              className="w-1 h-3 bg-primary/60 rounded-full mt-2"
-              animate={{ y: [0, 12, 0] }}
+              className="w-0.5 h-2 bg-primary/60 rounded-full mt-1"
+              animate={{ y: [0, 8, 0] }}
               transition={{
                 duration: 1.5,
                 repeat: Infinity,

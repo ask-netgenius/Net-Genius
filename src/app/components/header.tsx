@@ -21,12 +21,39 @@ export default function Header() {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
+      // Close menu when scrolling
+      if (isMenuOpen) {
+        setIsMenuOpen(false);
+      }
     };
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [isMenuOpen]);
+
+  useEffect(() => {
+    // Close menu when clicking outside
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Element;
+      if (isMenuOpen && !target.closest("header")) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    // Prevent body scroll when menu is open
+    if (isMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.body.style.overflow = "unset";
+    };
+  }, [isMenuOpen]);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -71,10 +98,7 @@ export default function Header() {
                 className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 shadow-lg hover:shadow-primary/20 transition-all duration-300 hover:scale-105"
               >
                 <Link href="#ai-advisor" className="flex items-center gap-2">
-                  <span className="relative">
-                    AI Advisor
-                    <span className="absolute -top-1 -right-1 w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-                  </span>
+                  <span className="relative">AI Advisor</span>
                 </Link>
               </Button>
             </div>
@@ -86,64 +110,136 @@ export default function Header() {
               onClick={toggleMenu}
               variant="ghost"
               size="icon"
-              className="hover:bg-primary/10 transition-colors duration-300"
+              className={cn(
+                "relative w-12 h-12 hover:bg-primary/10 transition-all duration-300 rounded-xl",
+                isMenuOpen && "bg-primary/10 scale-95"
+              )}
             >
-              <div className="relative w-6 h-6">
+              <div className="relative w-6 h-6 flex items-center justify-center">
                 <Menu
                   className={cn(
-                    "h-6 w-6 absolute transition-all duration-300",
-                    isMenuOpen ? "rotate-90 opacity-0" : "rotate-0 opacity-100"
+                    "h-5 w-5 absolute transition-all duration-300 ease-out",
+                    isMenuOpen
+                      ? "rotate-180 scale-0 opacity-0"
+                      : "rotate-0 scale-100 opacity-100"
                   )}
                 />
                 <X
                   className={cn(
-                    "h-6 w-6 absolute transition-all duration-300",
-                    isMenuOpen ? "rotate-0 opacity-100" : "-rotate-90 opacity-0"
+                    "h-5 w-5 absolute transition-all duration-300 ease-out",
+                    isMenuOpen
+                      ? "rotate-0 scale-100 opacity-100"
+                      : "rotate-180 scale-0 opacity-0"
                   )}
                 />
               </div>
-              <span className="sr-only">Toggle menu</span>
+              <span className="sr-only">
+                {isMenuOpen ? "Close menu" : "Open menu"}
+              </span>
+              {/* Ripple effect */}
+              <div
+                className={cn(
+                  "absolute inset-0 rounded-xl bg-primary/20 transition-all duration-300",
+                  isMenuOpen ? "scale-100 opacity-100" : "scale-0 opacity-0"
+                )}
+              />
             </Button>
           </div>
         </div>
       </div>
 
       {/* Mobile Menu */}
-      {isMenuOpen && (
-        <div className="md:hidden bg-background/95 backdrop-blur-lg border-t border-border/50 animate-in slide-in-from-top-4 duration-300">
-          <nav className="flex flex-col gap-2 p-6">
+      <div
+        className={`md:hidden fixed inset-0 bg-background z-[60] w-full h-full transition-all duration-500 ease-out px-8 ${
+          isMenuOpen
+            ? "opacity-100 translate-x-0 pointer-events-auto"
+            : "opacity-0 translate-x-full pointer-events-none"
+        }`}
+      >
+        <div className="flex flex-col h-screen w-full">
+          {/* Header with close button */}
+          <div
+            className={`h-20 flex items-center justify-between px-4 sm:px-6 lg:px-8 bg-background border-b border-border/50 w-full transition-all duration-300 delay-100 ${
+              isMenuOpen
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 -translate-y-4"
+            }`}
+          >
+            {/* Logo */}
+            <Link href="/" className="flex items-center gap-3 group">
+              <div className="p-2 bg-gradient-to-br from-primary to-primary/80 rounded-xl shadow-lg group-hover:shadow-primary/20 group-hover:scale-105 transition-all duration-300">
+                <Code className="h-6 w-6 text-primary-foreground" />
+              </div>
+              <span className="text-xl font-bold font-headline group-hover:text-primary transition-colors duration-300">
+                Net Genius
+              </span>
+            </Link>
+
+            {/* Close Button */}
+            <Button
+              onClick={toggleMenu}
+              variant="ghost"
+              size="icon"
+              className="w-12 h-12 hover:bg-primary/10 transition-all duration-300 rounded-xl"
+            >
+              <X className="h-6 w-6" />
+              <span className="sr-only">Close menu</span>
+            </Button>
+          </div>
+
+          {/* Menu content */}
+          <nav
+            className={`flex flex-col flex-1 px-6 py-8 space-y-6 bg-background w-full transition-all duration-400 delay-200 ${
+              isMenuOpen
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-8"
+            }`}
+          >
             {navLinks.map((link, index) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsMenuOpen(false)}
-                className="text-lg font-medium text-foreground hover:text-primary transition-all duration-300 py-3 px-4 rounded-lg hover:bg-primary/5 border border-transparent hover:border-primary/20"
-                style={{ animationDelay: `${index * 50}ms` }}
+                className={`text-right text-2xl font-medium text-foreground hover:text-primary transition-all duration-300 py-4 border-b border-border/20 w-full transform ${
+                  isMenuOpen
+                    ? "opacity-100 translate-x-0"
+                    : "opacity-0 translate-x-8"
+                }`}
+                style={{
+                  transitionDelay: isMenuOpen
+                    ? `${300 + index * 100}ms`
+                    : "0ms",
+                }}
               >
                 {link.label}
               </Link>
             ))}
-            <div className="pt-4 border-t border-border/30 mt-2">
+
+            <div
+              className={`pt-8 w-full transition-all duration-300 ${
+                isMenuOpen
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-4"
+              }`}
+              style={{
+                transitionDelay: isMenuOpen
+                  ? `${300 + navLinks.length * 100 + 100}ms`
+                  : "0ms",
+              }}
+            >
               <Button
                 asChild
                 size="lg"
-                className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 shadow-lg"
+                className="w-full h-14 bg-primary hover:bg-primary/90 text-lg font-semibold"
               >
-                <Link
-                  href="#ai-advisor"
-                  onClick={() => setIsMenuOpen(false)}
-                  className="flex items-center justify-center gap-2"
-                >
-                  <span className="relative">
-                    AI Advisor
-                    <span className="absolute -top-1 -right-1 w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-                  </span>
+                <Link href="#ai-advisor" onClick={() => setIsMenuOpen(false)}>
+                  AI Advisor
                 </Link>
               </Button>
             </div>
           </nav>
         </div>
-      )}
+      </div>
     </header>
   );
 }
