@@ -4,48 +4,63 @@
 
 @layer base {
   :root {
-    --background: 240 5% 9%; /* Dark Titanium Gray */
-    --foreground: 240 5% 90%; /* Light, Clean Gray for text */
-    --card: 240 4% 14%; /* Lighter Titanium */
-    --card-foreground: 240 5% 90%;
-    --popover: 240 5% 9%;
-    --popover-foreground: 240 5% 90%;
+    /* Backgrounds made darker for deeper contrast */
+    --background: 240 6% 4%; /* Near Black */
+    --card: 240 5% 8%; /* Slightly Lighter Near Black */
+    --popover: 240 6% 4%;
+
+    /* Foregrounds/Text made lighter for readability */
+    --foreground: 240 5% 96%; /* Very Light Gray */
+    --card-foreground: 240 5% 96%;
+    --popover-foreground: 240 5% 96%;
+    --secondary-foreground: 240 5% 96%;
+    --accent-foreground: 240 5% 98%; /* Near White */
+    --muted-foreground: 240 5% 60%; /* Muted text adjusted for new background */
+
+    /* Unchanged Accent Colors */
     --primary: 85 90% 52%; /* Acid Green / Sharp Lime */
     --primary-foreground: 85 90% 5%; /* Very Dark Green for text on buttons */
-    --secondary: 240 3% 25%; /* Muted Cool Gray */
-    --secondary-foreground: 240 5% 90%;
-    --muted: 240 3% 25%;
-    --muted-foreground: 240 5% 65%; /* Muted Gray text */
-    --accent: 240 3% 30%; /* Lighter gray for hovers */
-    --accent-foreground: 240 5% 95%;
     --destructive: 330 85% 60%; /* Vibrant Magenta/Hot Pink for warnings */
     --destructive-foreground: 0 0% 100%;
-    --border: 240 3% 20%; /* Subtle cool-gray border */
-    --input: 240 3% 20%;
     --ring: 85 90% 55%; /* Slightly brighter Acid Green for focus */
+
+    /* UI elements adjusted for the new contrast levels */
+    --secondary: 240 3% 18%;
+    --muted: 240 3% 18%;
+    --accent: 240 3% 24%; /* Lighter gray for hovers */
+    --border: 240 3% 15%; /* Subtle border, more visible now */
+    --input: 240 3% 15%;
+
     --radius: 0.5rem;
   }
 
   .dark {
-    --background: 240 5% 9%; /* Dark Titanium Gray */
-    --foreground: 240 5% 90%; /* Light, Clean Gray for text */
-    --card: 240 4% 14%; /* Lighter Titanium */
-    --card-foreground: 240 5% 90%;
-    --popover: 240 5% 9%;
-    --popover-foreground: 240 5% 90%;
+    /* Backgrounds made darker for deeper contrast */
+    --background: 240 6% 4%; /* Near Black */
+    --card: 240 5% 8%; /* Slightly Lighter Near Black */
+    --popover: 240 6% 4%;
+
+    /* Foregrounds/Text made lighter for readability */
+    --foreground: 240 5% 96%; /* Very Light Gray */
+    --card-foreground: 240 5% 96%;
+    --popover-foreground: 240 5% 96%;
+    --secondary-foreground: 240 5% 96%;
+    --accent-foreground: 240 5% 98%; /* Near White */
+    --muted-foreground: 240 5% 60%; /* Muted text adjusted for new background */
+
+    /* Unchanged Accent Colors */
     --primary: 85 90% 52%; /* Acid Green / Sharp Lime */
     --primary-foreground: 85 90% 5%; /* Very Dark Green for text on buttons */
-    --secondary: 240 3% 25%; /* Muted Cool Gray */
-    --secondary-foreground: 240 5% 90%;
-    --muted: 240 3% 25%;
-    --muted-foreground: 240 5% 65%; /* Muted Gray text */
-    --accent: 240 3% 30%; /* Lighter gray for hovers */
-    --accent-foreground: 240 5% 95%;
     --destructive: 330 85% 60%; /* Vibrant Magenta/Hot Pink for warnings */
     --destructive-foreground: 0 0% 100%;
-    --border: 240 3% 20%; /* Subtle cool-gray border */
-    --input: 240 3% 20%;
     --ring: 85 90% 55%; /* Slightly brighter Acid Green for focus */
+
+    /* UI elements adjusted for the new contrast levels */
+    --secondary: 240 3% 18%;
+    --muted: 240 3% 18%;
+    --accent: 240 3% 24%; /* Lighter gray for hovers */
+    --border: 240 3% 15%; /* Subtle border, more visible now */
+    --input: 240 3% 15%;
   }
 }
 
