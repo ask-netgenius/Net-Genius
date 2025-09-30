@@ -150,7 +150,7 @@ export default function Header() {
 
       {/* Mobile Menu */}
       <div
-        className={`md:hidden fixed inset-0 bg-background z-[60] w-full h-full transition-all duration-500 ease-out px-8 ${
+        className={`md:hidden fixed inset-0 bg-background z-[60] w-screen h-screen transition-all duration-500 ease-out ${
           isMenuOpen
             ? "opacity-100 translate-x-0 pointer-events-auto"
             : "opacity-0 translate-x-full pointer-events-none"
@@ -200,7 +200,7 @@ export default function Header() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsMenuOpen(false)}
-                className={`text-right text-2xl font-medium text-foreground hover:text-primary transition-all duration-300 py-4 border-b border-border/20 w-full transform ${
+                className={`text-center text-2xl font-medium text-foreground hover:text-primary transition-all duration-300 py-4 border-b border-border/20 w-full transform ${
                   isMenuOpen
                     ? "opacity-100 translate-x-0"
                     : "opacity-0 translate-x-8"

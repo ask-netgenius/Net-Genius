@@ -20,37 +20,37 @@ const services: Service[] = [
     icon: CodeXml,
     title: "Full-Stack Development",
     description:
-      "Comprehensive end-to-end web application development services including responsive React frontends, Node.js backends, database design, and seamless API integration. Our expert developers create scalable, modern web solutions.",
+      "End-to-end web application development with React frontends, Node.js backends, and seamless API integration for modern, scalable solutions.",
   },
   {
     icon: ServerCog,
     title: "Custom Backend Development",
     description:
-      "Professional backend development services specializing in scalable server-side applications, RESTful APIs, microservices architecture, database optimization, and high-performance system design for enterprise solutions.",
+      "Scalable server-side applications with RESTful APIs, microservices architecture, and optimized database design for enterprise solutions.",
   },
   {
     icon: GitMerge,
     title: "DevOps & Infrastructure",
     description:
-      "Complete DevOps solutions including CI/CD pipeline setup, Docker containerization, Kubernetes orchestration, cloud infrastructure automation, monitoring, and deployment optimization for improved development efficiency.",
+      "Complete CI/CD pipelines, Docker containerization, cloud automation, and deployment optimization for improved development efficiency.",
   },
   {
     icon: LineChart,
     title: "SEO Optimization Services",
     description:
-      "Professional SEO services to boost your website's search engine rankings. Technical SEO audits, keyword optimization, content strategy, local SEO, and comprehensive digital marketing to increase organic traffic and conversions.",
+      "Boost search rankings with technical SEO audits, keyword optimization, and comprehensive digital marketing strategies.",
   },
   {
     icon: Briefcase,
     title: "Business Digitalization",
     description:
-      "Digital transformation consulting and custom software solutions to modernize business operations. Process automation, workflow optimization, digital strategy implementation, and technology integration for competitive advantage.",
+      "Digital transformation consulting with process automation, workflow optimization, and technology integration for competitive advantage.",
   },
   {
     icon: Cloud,
     title: "Cloud Solutions & Migration",
     description:
-      "Expert cloud services including AWS, Google Cloud Platform, and Microsoft Azure implementations. Cloud migration, serverless architecture, auto-scaling solutions, and cloud-native application development.",
+      "Expert cloud services for AWS, GCP, and Azure including migration, serverless architecture, and cloud-native development.",
   },
 ];
 
